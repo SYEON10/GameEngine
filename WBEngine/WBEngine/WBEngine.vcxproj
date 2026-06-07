@@ -107,7 +107,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -126,13 +126,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\FObjectFactory.cpp" />
+    <ClCompile Include="Editor\EditorManager.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_demo.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_draw.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_tables.cpp" />
+    <ClCompile Include="Editor\ImGUI\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Core\UObject.cpp" />
+    <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\UObject.h" />
-    <ClInclude Include="Core\FObjectFactory.h" />
+    <ClInclude Include="Core\IManager.h" />
+    <ClInclude Include="Editor\EditorManager.h" />
+    <ClInclude Include="Editor\ImGUI\imconfig.h" />
+    <ClInclude Include="Editor\ImGUI\imgui.h" />
+    <ClInclude Include="Editor\ImGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="Editor\ImGUI\imgui_impl_win32.h" />
+    <ClInclude Include="Editor\ImGUI\imgui_internal.h" />
+    <ClInclude Include="Editor\ImGUI\imstb_rectpack.h" />
+    <ClInclude Include="Editor\ImGUI\imstb_textedit.h" />
+    <ClInclude Include="Editor\ImGUI\imstb_truetype.h" />
+    <ClInclude Include="Renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
