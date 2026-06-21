@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Client.cpp" />
     <ClCompile Include="Editor\EditorManager.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui_demo.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Client.h" />
     <ClInclude Include="Core\IManager.h" />
     <ClInclude Include="Editor\EditorManager.h" />
     <ClInclude Include="Editor\ImGUI\imconfig.h" />
