@@ -13,6 +13,7 @@ static IDXGISwapChain* g_pSwapChain = nullptr;
 static bool                     g_SwapChainOccluded = false;
 static UINT                     g_ResizeWidth = 0, g_ResizeHeight = 0;
 static ID3D11RenderTargetView* g_mainRenderTargetView = nullptr;
+static ID3D11RenderTargetView* g_gameSceneRenderTargetView = nullptr;
 
 // Forward declarations of helper functions
 bool CreateDeviceD3D(HWND hWnd);
@@ -58,7 +59,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     // Setup Dear ImGui style
     ImGui::StyleColorsDark();
-    //ImGui::StyleColorsLight();
 
     // Setup scaling
     ImGuiStyle& style = ImGui::GetStyle();
@@ -86,6 +86,27 @@ int WINAPI WinMain(HINSTANCE hInstance,
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf");
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf");
     //IM_ASSERT(font != nullptr);
+
+    ID3D11Texture2D* renderTexture = nullptr;
+    D3D11_TEXTURE2D_DESC textureDesc = {};
+    textureDesc.Width = 800;
+    textureDesc.Height = 600;
+    textureDesc.MipLevels = 1;
+    textureDesc.ArraySize = 1;
+    textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    textureDesc.SampleDesc.Count = 1;
+    textureDesc.Usage = D3D11_USAGE_DEFAULT;
+    textureDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+
+    g_pd3dDevice->CreateTexture2D(&textureDesc, nullptr, &renderTexture);
+
+    // RenderTargetView 생성
+    ID3D11RenderTargetView* rtv = nullptr;
+    g_pd3dDevice->CreateRenderTargetView(renderTexture, nullptr, &rtv);
+
+    // ShaderResourceView 생성 (ImGui가 표시할 때 필요)
+    ID3D11ShaderResourceView* srv = nullptr;
+    g_pd3dDevice->CreateShaderResourceView(renderTexture, nullptr, &srv);
 
     // Our state
     bool show_demo_window = true;
@@ -168,11 +189,25 @@ int WINAPI WinMain(HINSTANCE hInstance,
             ImGui::End();
         }
 
+        const float clearColor[4] = { 0.0f, 0.2f, 0.4f, 1.0f };
+        g_pd3dDeviceContext->OMSetRenderTargets(1, &rtv, nullptr);  // Texture를 RenderTarget으로 설정
+        g_pd3dDeviceContext->ClearRenderTargetView(rtv, clearColor);
+
+        {
+            ImGui::Begin("3D Viewport");
+
+            // Texture를 ImGui 이미지로 표시
+            ImGui::Image((ImTextureID)srv, ImVec2(800, 600));
+
+            ImGui::End();
+        }
+
         // Rendering
         ImGui::Render();
         const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
         g_pd3dDeviceContext->OMSetRenderTargets(1, &g_mainRenderTargetView, nullptr);
         g_pd3dDeviceContext->ClearRenderTargetView(g_mainRenderTargetView, clear_color_with_alpha);
+
         ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
         // Present
@@ -213,10 +248,9 @@ bool CreateDeviceD3D(HWND hWnd)
     sd.SampleDesc.Count = 1;
     sd.SampleDesc.Quality = 0;
     sd.Windowed = TRUE;
-    sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+    sd.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
     UINT createDeviceFlags = 0;
-    //createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
     D3D_FEATURE_LEVEL featureLevel;
     const D3D_FEATURE_LEVEL featureLevelArray[2] = { D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_0, };
     HRESULT res = D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags, featureLevelArray, 2, D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, &featureLevel, &g_pd3dDeviceContext);
