@@ -127,7 +127,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
-    <ClCompile Include="Core\Client.cpp" />
     <ClCompile Include="Core\FWindows.cpp" />
     <ClCompile Include="Editor\EditorManager.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui.cpp" />
@@ -142,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\Client.h" />
     <ClInclude Include="Core\FWindows.h" />
     <ClInclude Include="Core\IManager.h" />
     <ClInclude Include="Editor\EditorManager.h" />
