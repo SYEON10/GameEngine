@@ -2,6 +2,7 @@
 #include <wtypes.h>
 
 class FWindows;
+class FRenderer;
 
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -19,6 +20,7 @@ private:
 	void StartSystem();
 	void ShutdownSystem();
 
-	FWindows windows_;
+	FWindows* windows_;
+	FRenderer* renderer_;
 };
 

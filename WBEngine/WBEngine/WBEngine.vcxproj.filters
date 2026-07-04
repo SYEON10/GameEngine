@@ -42,10 +42,16 @@
     <ClCompile Include="Editor\ImGUI\imgui_impl_win32.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
+    <ClCompile Include="Core\FRenderer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Core\Client.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Application.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\FWindows.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +86,16 @@
     <ClInclude Include="Core\IManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
+    <ClInclude Include="Core\FRenderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Core\Client.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\FWindows.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,8 @@
-#include "Renderer.h"
+#include "FRenderer.h"
 #include <d3d11.h>
 #include <wrl/client.h> // Microsoft::WRL::ComPtr 사용을 위한 헤더
 
-#pragma comment(lib, "d3d11.lib") // 라이브러리 링크
+#pragma comment(lib, "d3d11.lib")
 
 // 이 변수들을 엔진의 메인 초기화 클래스 멤버나 전역에 둡니다.
 Microsoft::WRL::ComPtr<ID3D11Device>        g_device = nullptr;        // 리소스 생성 담당
@@ -10,7 +10,7 @@ Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_context = nullptr;       // 렌더링
 Microsoft::WRL::ComPtr<IDXGISwapChain>      g_swapChain = nullptr;
 
 
-void Renderer::Initializer(HWND hwnd, int width, int height)
+void FRenderer::Initializer(HWND hwnd, int width, int height)
 {
     // 1. 스왑 체인 옵션 설정 (화면 해상도, 주사율 등)
     DXGI_SWAP_CHAIN_DESC sd = {};
@@ -40,7 +40,7 @@ void Renderer::Initializer(HWND hwnd, int width, int height)
         1,
         D3D11_SDK_VERSION,          // SDK 버전 전달
         &sd,
-        g_swapChain.GetAddressOf(), // 변수의 주소값 전달하여 객체 생성 받아오기
+        g_swapChain.GetAddressOf(),
         g_device.GetAddressOf(),
         nullptr,
         g_context.GetAddressOf()
@@ -52,12 +52,12 @@ void Renderer::Initializer(HWND hwnd, int width, int height)
     }
 }
 
-ID3D11Device* Renderer::GetDevice()
+ID3D11Device* FRenderer::GetDevice()
 {
 	return g_device.Get();
 }
 
-ID3D11DeviceContext* Renderer::GetDeviceContext()
+ID3D11DeviceContext* FRenderer::GetDeviceContext()
 {
 	return g_context.Get();
 }

@@ -126,7 +126,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Client.cpp" />
+    <ClCompile Include="Core\FWindows.cpp" />
     <ClCompile Include="Editor\EditorManager.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui_demo.cpp" />
@@ -136,10 +138,12 @@
     <ClCompile Include="Editor\ImGUI\imgui_tables.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Core\FRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\Client.h" />
+    <ClInclude Include="Core\FWindows.h" />
     <ClInclude Include="Core\IManager.h" />
     <ClInclude Include="Editor\EditorManager.h" />
     <ClInclude Include="Editor\ImGUI\imconfig.h" />
@@ -150,7 +154,7 @@
     <ClInclude Include="Editor\ImGUI\imstb_rectpack.h" />
     <ClInclude Include="Editor\ImGUI\imstb_textedit.h" />
     <ClInclude Include="Editor\ImGUI\imstb_truetype.h" />
-    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Core\FRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
