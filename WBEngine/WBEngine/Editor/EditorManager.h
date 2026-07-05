@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Core/IManager.h"
+#include "../Manager/IManager.h"
 
 class EditorManager : public IManager<EditorManager>
 {

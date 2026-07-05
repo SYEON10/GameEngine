@@ -1,8 +1,8 @@
-#pragma once
+ï»¿#pragma once
 #include <wtypes.h>
 
 
-//Windows ÃÊ±âÈ­, Ã¢ »ı¼º, Windows ¸Ş½ÃÁö Ã³¸®¸¦ ´ã´ç
+//Windows ì´ˆê¸°í™”, ì°½ ìƒì„±, Windows ë©”ì‹œì§€ ì²˜ë¦¬ë¥¼ ë‹´ë‹¹
 class FWindows
 {
 public:
@@ -10,6 +10,7 @@ public:
 	virtual ~FWindows();
 
 	void ShowWindow();
+	void CreateConsoleWindow(); // Optional: Create a console window for debugging
 
 	HWND GetHWND() const { return hwnd_; }
 

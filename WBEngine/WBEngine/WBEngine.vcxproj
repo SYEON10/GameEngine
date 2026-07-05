@@ -136,13 +136,14 @@
     <ClCompile Include="Editor\ImGUI\imgui_impl_win32.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui_tables.cpp" />
     <ClCompile Include="Editor\ImGUI\imgui_widgets.cpp" />
+    <ClCompile Include="Manager\InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Core\FRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Application.h" />
     <ClInclude Include="Core\FWindows.h" />
-    <ClInclude Include="Core\IManager.h" />
+    <ClInclude Include="Manager\IManager.h" />
     <ClInclude Include="Editor\EditorManager.h" />
     <ClInclude Include="Editor\ImGUI\imconfig.h" />
     <ClInclude Include="Editor\ImGUI\imgui.h" />
@@ -153,8 +154,10 @@
     <ClInclude Include="Editor\ImGUI\imstb_textedit.h" />
     <ClInclude Include="Editor\ImGUI\imstb_truetype.h" />
     <ClInclude Include="Core\FRenderer.h" />
+    <ClInclude Include="Manager\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="imgui.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

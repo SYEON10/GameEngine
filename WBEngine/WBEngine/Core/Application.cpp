@@ -1,6 +1,7 @@
-#include "Application.h"
+﻿#include "Application.h"
 #include "FWindows.h"
 #include "FRenderer.h"
+#include "../Manager/InputManager.h";
 
 #include "../Editor/ImGUI/imgui.h"
 #include "../Editor/ImGUI/imgui_impl_win32.h"
@@ -23,8 +24,9 @@ Application::~Application()
 
 int Application::Run()
 {
-	//TODO> Windows �ʱ�ȭ
+	//TODO> Windows 초기화
 
+	windows_->CreateConsoleWindow();
 	windows_->ShowWindow();
     renderer_->Initializer(windows_->GetHWND(), 1280, 800);
 
@@ -37,16 +39,26 @@ int Application::Run()
 
 void Application::MainLoop()
 {
-    bool done = false;
-    while (!done)
+    MSG msg;
+    while (true)
     {
-        
-    }
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+			TranslateMessage(&msg); //사용자가 알아들을 수 있는 메시지로 변환
+			DispatchMessage(&msg);	//WinProc으로 메시지 전달
 
+			if (msg.message == WM_QUIT) {
+				break;
+			}
+		}
+		else {
+			renderer_->RenderLoop();
+		}
+    }
 }
 
 void Application::InitializeSystem()
 {
+	InputManager::Get().StartUp();
 }
 
 void Application::StartSystem()

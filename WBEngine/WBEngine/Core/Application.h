@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <wtypes.h>
 
 class FWindows;
@@ -9,7 +9,7 @@ class Application
 public:
 	Application(HINSTANCE hInstance, int nCmdShow);
 	~Application();
-	int Run(); //¿¡·¯ÄÚµå ¹İÈ¯
+	int Run(); //ì—ëŸ¬ì½”ë“œ ë°˜í™˜
 
 private:
 	void MainLoop();

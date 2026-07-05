@@ -1,33 +1,36 @@
-#include "Windows.h"
+ï»¿#include "Windows.h"
 #include "FWindows.h"
+#include "../Manager/InputManager.h";
+#include <cstdio>
+#include <iostream>
 
-UINT FWindows::width_ = 1280;  // ±âº» °¡·Î Å©±â
-UINT FWindows::height_ = 800;  // ±âº» ¼¼·Î Å©±â
+UINT FWindows::width_ = 1280;  // ê¸°ë³¸ ê°€ë¡œ í¬ê¸°
+UINT FWindows::height_ = 800;  // ê¸°ë³¸ ì„¸ë¡œ í¬ê¸°
 
 FWindows::FWindows(HINSTANCE hInstance, int nCmdShow)
 {
     WNDCLASSEXW wc{};
 
 	wc.cbSize = sizeof(WNDCLASSEXW);
-	wc.style = CS_HREDRAW | CS_VREDRAW; //°¡·Î ¹× ¼¼·Î Å©±â º¯°æ ½Ã À©µµ¿ì¸¦ ´Ù½Ã ±×¸®µµ·Ï ¼³Á¤
+	wc.style = CS_HREDRAW | CS_VREDRAW; //ê°€ë¡œ ë° ì„¸ë¡œ í¬ê¸° ë³€ê²½ ì‹œ ìœˆë„ìš°ë¥¼ ë‹¤ì‹œ ê·¸ë¦¬ë„ë¡ ì„¤ì •
     wc.lpfnWndProc = WndProc;
 	wc.hInstance = hInstance;
     wc.lpszClassName = L"WBEngine";
 
     wc_ = wc;
 
-	//wc.¿¡ À©µµ¿ì Ã¢ÀÇ ¾ÆÀÌÄÜ, Ä¿¼­, ¹è°æ»ö µî ÇÊ¿äÇÑ ¼³Á¤À» Ãß°¡ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+	//wc.ì— ìœˆë„ìš° ì°½ì˜ ì•„ì´ì½˜, ì»¤ì„œ, ë°°ê²½ìƒ‰ ë“± í•„ìš”í•œ ì„¤ì •ì„ ì¶”ê°€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 
 	::RegisterClassExW(&wc);
 
 	hwnd_ = ::CreateWindowW(
         wc.lpszClassName, 
-        L"S2 Happy S2",         //»ó´Ü À©µµ¿ì Ã¢ ÀÌ¸§
+        L"S2 Happy S2",         //ìƒë‹¨ ìœˆë„ìš° ì°½ ì´ë¦„
         WS_OVERLAPPEDWINDOW, 
-        100,                    //À©µµ¿ì Ã¢ x ÁÂÇ¥
-		100,                    //À©µµ¿ì Ã¢ y ÁÂÇ¥
-        (int)(1280 * main_scale),   //À©µµ¿ì Ã¢ width
-        (int)(800 * main_scale),    //À©µµ¿ì Ã¢ height
+        100,                    //ìœˆë„ìš° ì°½ x ì¢Œí‘œ
+		100,                    //ìœˆë„ìš° ì°½ y ì¢Œí‘œ
+        (int)(1280 * main_scale),   //ìœˆë„ìš° ì°½ width
+        (int)(800 * main_scale),    //ìœˆë„ìš° ì°½ height
         nullptr, 
         nullptr, 
         wc.hInstance,
@@ -46,8 +49,29 @@ void FWindows::ShowWindow()
     ::ShowWindow(hwnd_, SW_SHOWDEFAULT);
     ::UpdateWindow(hwnd_);
 }
+void FWindows::CreateConsoleWindow()
+{
+    if (AllocConsole())
+    {
+        FILE* fp;
+
+		// í‘œì¤€ ì…ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì„ ì½˜ì†”ë¡œ ë¦¬ë””ë ‰ì…˜
+        freopen_s(&fp, "CONOUT$", "w", stdout);
+        freopen_s(&fp, "CONOUT$", "w", stderr);
+
+        SetConsoleTitleW(L"Log Console");
+
+        std::wcout.clear();
+        std::cout.clear();
+    }
+}
+
 LRESULT __stdcall FWindows::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    if (InputManager::Get().GetWindowsInput(msg, wParam, lParam)) {
+		return 0; // InputManagerê°€ ë©”ì‹œì§€ë¥¼ ì²˜ë¦¬í–ˆìœ¼ë©´ ê¸°ë³¸ ì²˜ë¦¬ë¥¼ ê±´ë„ˆëœë‹ˆë‹¤.
+    }
+
     switch (msg)
     {
     case WM_SIZE:
@@ -64,6 +88,7 @@ LRESULT __stdcall FWindows::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM l
         ::PostQuitMessage(0);
         return 0;
     }
+
     return ::DefWindowProcW(hWnd, msg, wParam, lParam);
 }
 ;

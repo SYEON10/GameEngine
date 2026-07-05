@@ -1,44 +1,43 @@
-#include "FRenderer.h"
+ï»¿#include "FRenderer.h"
 #include <d3d11.h>
-#include <wrl/client.h> // Microsoft::WRL::ComPtr »ç¿ëÀ» À§ÇÑ Çì´õ
+#include <wrl/client.h> // Microsoft::WRL::ComPtr ì‚¬ìš©ì„ ìœ„í•œ í—¤ë”
 
 #pragma comment(lib, "d3d11.lib")
 
-// ÀÌ º¯¼öµéÀ» ¿£ÁøÀÇ ¸ŞÀÎ ÃÊ±âÈ­ Å¬·¡½º ¸â¹ö³ª Àü¿ª¿¡ µÓ´Ï´Ù.
-Microsoft::WRL::ComPtr<ID3D11Device>        g_device = nullptr;        // ¸®¼Ò½º »ı¼º ´ã´ç
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_context = nullptr;       // ·»´õ¸µ ¸í·É ´ã´ç
+Microsoft::WRL::ComPtr<ID3D11Device>        g_device = nullptr;        // ë¦¬ì†ŒìŠ¤ ìƒì„± ë‹´ë‹¹
+Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_context = nullptr;       // ë Œë”ë§ ëª…ë ¹ ë‹´ë‹¹
 Microsoft::WRL::ComPtr<IDXGISwapChain>      g_swapChain = nullptr;
 
 
 void FRenderer::Initializer(HWND hwnd, int width, int height)
 {
-    // 1. ½º¿Ò Ã¼ÀÎ ¿É¼Ç ¼³Á¤ (È­¸é ÇØ»óµµ, ÁÖ»çÀ² µî)
+    // ìŠ¤ì™‘ ì²´ì¸ ì˜µì…˜ ì„¤ì • (í™”ë©´ í•´ìƒë„, ì£¼ì‚¬ìœ¨ ë“±)
     DXGI_SWAP_CHAIN_DESC sd = {};
-    sd.BufferCount = 1;                                    // ¹é ¹öÆÛ °³¼ö
-    sd.BufferDesc.Width = width;                           // È­¸é °¡·Î Å©±â
-    sd.BufferDesc.Height = height;                         // È­¸é ¼¼·Î Å©±â
-    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;     // »ö»ó Æ÷¸Ë
-    sd.BufferDesc.RefreshRate.Numerator = 60;              // 60Hz ÁÖ»çÀ² ±âº» ¼¼ÆÃ
+    sd.BufferCount = 1;                                    // ë°± ë²„í¼ ê°œìˆ˜
+    sd.BufferDesc.Width = width;                           // í™”ë©´ ê°€ë¡œ í¬ê¸°
+    sd.BufferDesc.Height = height;                         // í™”ë©´ ì„¸ë¡œ í¬ê¸°
+    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;     // ìƒ‰ìƒ í¬ë§·
+    sd.BufferDesc.RefreshRate.Numerator = 60;              // 60Hz ì£¼ì‚¬ìœ¨ ê¸°ë³¸ ì„¸íŒ…
     sd.BufferDesc.RefreshRate.Denominator = 1;
-    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;      // ·»´õ Å¸°ÙÀ¸·Î »ç¿ë
-    sd.OutputWindow = hwnd;                                // UI¸¦ ¶ç¿ï À©µµ¿ì Ã¢ ÇÚµé
-    sd.SampleDesc.Count = 1;                               // ¸ÖÆ¼»ùÇÃ¸µ ¾ÈÇÔ
+    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;      // ë Œë” íƒ€ê²Ÿìœ¼ë¡œ ì‚¬ìš©
+    sd.OutputWindow = hwnd;                                // UIë¥¼ ë„ìš¸ ìœˆë„ìš° ì°½ í•¸ë“¤
+    sd.SampleDesc.Count = 1;                               // ë©€í‹°ìƒ˜í”Œë§ ì•ˆí•¨
     sd.SampleDesc.Quality = 0;
-    sd.Windowed = TRUE;                                    // Ã¢¸ğµå ½ÇÇà
+    sd.Windowed = TRUE;                                    // ì°½ëª¨ë“œ ì‹¤í–‰
     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
-    // 2. µğ¹ÙÀÌ½ºÀÇ ±â´É ·¹º§ (DirectX 11 ¼³Á¤)
+    // DirectX 11 ì„¤ì •
     D3D_FEATURE_LEVEL featureLevel = D3D_FEATURE_LEVEL_11_0;
 
-    // 3. µğ¹ÙÀÌ½º, ÄÁÅØ½ºÆ®, ½º¿ÒÃ¼ÀÎ µ¿½Ã »ı¼º ÇÔ¼ö È£Ãâ
+    // ë””ë°”ì´ìŠ¤, ì»¨í…ìŠ¤íŠ¸, ìŠ¤ì™‘ì²´ì¸ ë™ì‹œ ìƒì„±
     HRESULT hr = D3D11CreateDeviceAndSwapChain(
-        nullptr,                    // ±âº» ±×·¡ÇÈ Ä«µå ¾î´ğÅÍ »ç¿ë
-        D3D_DRIVER_TYPE_HARDWARE,   // GPU ÇÏµå¿ş¾î °¡¼Ó »ç¿ë
+        nullptr,                    // ê¸°ë³¸ ê·¸ë˜í”½ ì¹´ë“œ ì–´ëŒ‘í„° ì‚¬ìš©
+        D3D_DRIVER_TYPE_HARDWARE,   // GPU í•˜ë“œì›¨ì–´ ê°€ì† ì‚¬ìš©
         nullptr,
-        0,                          // µğ¹ö±× ·¹ÀÌ¾î ÄÓ ¶§ ÇÃ·¡±× ÀÔ·Â ¿µ¿ª
+        0,                          // ë””ë²„ê·¸ ë ˆì´ì–´ ì¼¤ ë•Œ í”Œë˜ê·¸ ì…ë ¥ ì˜ì—­
         &featureLevel,
         1,
-        D3D11_SDK_VERSION,          // SDK ¹öÀü Àü´Ş
+        D3D11_SDK_VERSION,          // SDK ë²„ì „ ì „ë‹¬
         &sd,
         g_swapChain.GetAddressOf(),
         g_device.GetAddressOf(),
@@ -47,9 +46,49 @@ void FRenderer::Initializer(HWND hwnd, int width, int height)
     );
 
     if (FAILED(hr)) {
-        MessageBox(hwnd, L"DirectX 11 µğ¹ÙÀÌ½º »ı¼º ½ÇÆĞ!", L"¿¡·¯", MB_OK);
+        MessageBox(hwnd, L"DirectX 11 ë””ë°”ì´ìŠ¤ ìƒì„± ì‹¤íŒ¨!", L"ì—ëŸ¬", MB_OK);
         return;
     }
+
+    ID3D11Texture2D* pBackBuffer = nullptr;
+    renderTargetView_ = nullptr;
+    g_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);
+
+    // use the back buffer address to create the render target
+    g_device->CreateRenderTargetView(pBackBuffer, NULL, &renderTargetView_);
+    pBackBuffer->Release();
+
+    // set the render target as the back buffer
+    g_context->OMSetRenderTargets(1, &renderTargetView_, NULL);
+
+    D3D11_VIEWPORT vp;
+    vp.Width = 800.0f;     // ì¶œë ¥í•  ê°€ë¡œ í™”ë©´ í¬ê¸°
+    vp.Height = 600.0f;    // ì¶œë ¥í•  ì„¸ë¡œ í™”ë©´ í¬ê¸°
+    vp.MinDepth = 0.0f;    // ìµœì†Œ ê¹Šì´ ê°’ (ë³´í†µ 0)
+    vp.MaxDepth = 1.0f;    // ìµœëŒ€ ê¹Šì´ ê°’ (ë³´í†µ 1)
+    vp.TopLeftX = 0.0f;    // ì‹œì‘ X ì¢Œí‘œ (ì¢Œìƒë‹¨ 0)
+    vp.TopLeftY = 0.0f;    // ì‹œì‘ Y ì¢Œí‘œ (ì¢Œìƒë‹¨ 0)
+
+    // ì»¨í…ìŠ¤íŠ¸ì˜ ë˜ìŠ¤í„°ë¼ì´ì € ë‹¨ê³„ì— ë·°í¬íŠ¸ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+    g_context->RSSetViewports(1, &vp);
+}
+
+FRenderer::~FRenderer()
+{
+    g_device->Release();
+    g_context->Release();
+	g_swapChain->Release(); 
+}
+
+void FRenderer::RenderLoop()
+{
+    float clearColor[] = { 0.0f, 0.125f, 0.3f, 1.0f };
+    g_context->ClearRenderTargetView(renderTargetView_, clearColor);
+
+    // ë¬¼ì²´ ë Œë”ë§ ë¡œì§
+
+    // í›„ë©´ ë²„í¼ì™€ ì „ë©´ ë²„í¼ë¥¼ êµì²´í•˜ì—¬ í™”ë©´ì— ì¶œë ¥ (ìˆ˜ì§ë™ê¸°í™” ì—¬ë¶€: 0ì€ ì¦‰ì‹œ ì¶œë ¥)
+    g_swapChain->Present(0, 0);
 }
 
 ID3D11Device* FRenderer::GetDevice()
