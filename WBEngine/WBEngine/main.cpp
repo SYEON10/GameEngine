@@ -4,7 +4,6 @@
 #include <windowsx.h> 
 #include "Core/Application.h"
 
-// Main code
 int WINAPI WinMain(HINSTANCE hInstance,
     HINSTANCE hPrevInstance,
     LPSTR lpCmdLine,

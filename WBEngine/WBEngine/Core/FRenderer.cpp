@@ -1,4 +1,4 @@
-﻿#include "FRenderer.h"
+#include "FRenderer.h"
 #include <d3d11.h>
 #include <wrl/client.h> // Microsoft::WRL::ComPtr 사용을 위한 헤더
 
@@ -24,6 +24,7 @@ void FRenderer::Initializer(HWND hwnd, int width, int height)
     sd.SampleDesc.Count = 1;                               // 멀티샘플링 안함
     sd.SampleDesc.Quality = 0;
     sd.Windowed = TRUE;                                    // 창모드 실행
+	sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;     // 전체 화면 전환 허용
     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
 
     // DirectX 11 설정
@@ -75,6 +76,8 @@ void FRenderer::Initializer(HWND hwnd, int width, int height)
 
 FRenderer::~FRenderer()
 {
+    g_swapChain->SetFullscreenState(FALSE, NULL);
+
     g_device->Release();
     g_context->Release();
 	g_swapChain->Release(); 
@@ -83,6 +86,7 @@ FRenderer::~FRenderer()
 void FRenderer::RenderLoop()
 {
     float clearColor[] = { 0.0f, 0.125f, 0.3f, 1.0f };
+
     g_context->ClearRenderTargetView(renderTargetView_, clearColor);
 
     // 물체 렌더링 로직
