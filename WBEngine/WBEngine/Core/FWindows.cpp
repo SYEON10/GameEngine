@@ -1,4 +1,4 @@
-﻿#include "Windows.h"
+#include "Windows.h"
 #include "FWindows.h"
 #include "../Manager/InputManager.h";
 #include <cstdio>

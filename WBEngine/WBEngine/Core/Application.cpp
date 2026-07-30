@@ -1,7 +1,8 @@
-﻿#include "Application.h"
+#include "Application.h"
 #include "FWindows.h"
 #include "FRenderer.h"
 #include "../Manager/InputManager.h";
+#include "../Manager/LogManager.h";
 
 #include "../Editor/ImGUI/imgui.h"
 #include "../Editor/ImGUI/imgui_impl_win32.h"
@@ -58,6 +59,7 @@ void Application::MainLoop()
 
 void Application::InitializeSystem()
 {
+	LogManager::Get().StartUp();
 	InputManager::Get().StartUp();
 }
 
