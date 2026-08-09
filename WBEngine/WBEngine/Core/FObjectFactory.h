@@ -4,10 +4,12 @@
 class FObjectFactory
 {
 public:
-	template<typename T, typename... Args>
-	static T* ConstructObject(Args&&... args)
+	static UObject* ConstructObject(const UClass* uclass)
 	{
 		return new T(std::forward<Args>(args)...);
 	}
+
+private:
+	TArray<UObject*> Objects;
 };
 
