@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint> 
+
 template <typename T>
 using TArray = std::vector<T>;
 
@@ -32,3 +34,10 @@ using TOptional = std::optional<T>;
 
 template <typename ... Ts>
 using TVariant = std::variant<Ts...>;
+
+using FString = std::string;
+
+using INT32 = int32_t;
+using INT64 = int64_t;
+
+#define INDEX_NONE -1

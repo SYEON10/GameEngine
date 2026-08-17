@@ -1,15 +1,9 @@
 #pragma once
-
+#include "UObject.h"
+#include "CoreMinimal.h"
 
 class FObjectFactory
 {
 public:
-	static UObject* ConstructObject(const UClass* uclass)
-	{
-		return new T(std::forward<Args>(args)...);
-	}
-
-private:
-	TArray<UObject*> Objects;
+	UObject* NewObject(UClass* uclass); //TODO> 일단 전체 오브젝트 저장은 폐기하고 CDO만 저장해서 호로록
 };
-

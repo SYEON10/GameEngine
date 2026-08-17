@@ -1,6 +1,6 @@
 #pragma once
 #include "IManager.h"
-#include <string> //TODO> pch에 있는데 왜 또 include 해야 하지?
+#include <string>
 
 class LogManager : public IManager<LogManager>
 {
@@ -8,7 +8,7 @@ public:
 	void StartUp() override;
 	void ShutDown() override;
 
-	void Log(const std::string& msg);
+	void Log(const FString& msg);
 };
 
 #define LOG_DEBUG(msg) \

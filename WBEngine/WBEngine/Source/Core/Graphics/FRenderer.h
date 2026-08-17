@@ -1,7 +1,7 @@
 #pragma once
 #include <d3d11.h>
 
-//DirectX 11 ÃÊ±âÈ­ ¹× ·»´õ¸µ ´ã´ç
+//DirectX 11 ì´ˆê¸°í™” ë° ë Œë”ë§ ë‹´ë‹¹
 class FRenderer
 {
 public:
@@ -14,5 +14,8 @@ public:
 	ID3D11DeviceContext* GetDeviceContext();
 
 	ID3D11RenderTargetView* renderTargetView_;
+
+private:
+	void InitPipeline();
 };
 

@@ -79,6 +79,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -93,6 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,6 +111,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,6 +130,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,48 +138,61 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Application.cpp" />
-    <ClCompile Include="Core\FWindows.cpp" />
-    <ClCompile Include="Editor\EditorManager.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_demo.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_draw.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_impl_dx11.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_impl_win32.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_tables.cpp" />
-    <ClCompile Include="Editor\ImGUI\imgui_widgets.cpp" />
-    <ClCompile Include="Manager\LogManager.cpp" />
-    <ClCompile Include="Manager\InputManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Core\FRenderer.cpp" />
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Source\Core\Application.cpp" />
+    <ClCompile Include="Source\Core\FObjectFactory.cpp" />
+    <ClCompile Include="Source\Core\FWindows.cpp" />
+    <ClCompile Include="Source\Core\UObject.cpp" />
+    <ClCompile Include="Source\Editor\EditorManager.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_demo.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_draw.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_tables.cpp" />
+    <ClCompile Include="Source\Editor\ImGUI\imgui_widgets.cpp" />
+    <ClCompile Include="Source\Manager\LogManager.cpp" />
+    <ClCompile Include="Source\Manager\InputManager.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Core\Graphics\FRenderer.cpp" />
+    <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Core\UClass.cpp" />
+    <ClCompile Include="Source\Core\UClass.cpp" />
+    <ClCompile Include="Source\Core\USceneComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Application.h" />
-    <ClInclude Include="Core\FWindows.h" />
-    <ClInclude Include="Manager\LogManager.h" />
-    <ClInclude Include="Manager\IManager.h" />
-    <ClInclude Include="Editor\EditorManager.h" />
-    <ClInclude Include="Editor\ImGUI\imconfig.h" />
-    <ClInclude Include="Editor\ImGUI\imgui.h" />
-    <ClInclude Include="Editor\ImGUI\imgui_impl_dx11.h" />
-    <ClInclude Include="Editor\ImGUI\imgui_impl_win32.h" />
-    <ClInclude Include="Editor\ImGUI\imgui_internal.h" />
-    <ClInclude Include="Editor\ImGUI\imstb_rectpack.h" />
-    <ClInclude Include="Editor\ImGUI\imstb_textedit.h" />
-    <ClInclude Include="Editor\ImGUI\imstb_truetype.h" />
-    <ClInclude Include="Core\FRenderer.h" />
-    <ClInclude Include="Manager\InputManager.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Core\UClass.h" />
+    <ClInclude Include="Source\CoreMinimal.h" />
+    <ClInclude Include="Source\Core\CoreTypes.h" />
+    <ClInclude Include="Source\Core\Application.h" />
+    <ClInclude Include="Source\Core\FObjectFactory.h" />
+    <ClInclude Include="Source\Core\FWindows.h" />
+    <ClInclude Include="Source\Core\UObject.h" />
+    <ClInclude Include="Source\Manager\LogManager.h" />
+    <ClInclude Include="Source\Manager\IManager.h" />
+    <ClInclude Include="Source\Editor\EditorManager.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imconfig.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imgui.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imgui_impl_win32.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imgui_internal.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imstb_rectpack.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imstb_textedit.h" />
+    <ClInclude Include="Source\Editor\ImGUI\imstb_truetype.h" />
+    <ClInclude Include="Source\Core\Graphics\FRenderer.h" />
+    <ClInclude Include="Source\Manager\InputManager.h" />
+    <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Core\UClass.h" />
+    <ClInclude Include="Source\Core\USceneComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="imgui.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\Core\Graphics\shader.hlsl">
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

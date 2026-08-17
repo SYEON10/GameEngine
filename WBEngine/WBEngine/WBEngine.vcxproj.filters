@@ -15,110 +15,135 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\Core\Application.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\EditorManager.cpp">
+    <ClCompile Include="Source\Core\FObjectFactory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui.cpp">
+    <ClCompile Include="Source\Core\FWindows.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_demo.cpp">
+    <ClCompile Include="Source\Core\UObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_draw.cpp">
+    <ClCompile Include="Source\Editor\EditorManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_tables.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_widgets.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_demo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_impl_dx11.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_draw.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\ImGUI\imgui_impl_win32.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_impl_dx11.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Core\FRenderer.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_impl_win32.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Application.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_tables.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Core\FWindows.cpp">
+    <ClCompile Include="Source\Editor\ImGUI\imgui_widgets.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\InputManager.cpp">
+    <ClCompile Include="Source\Manager\LogManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="Source\Manager\InputManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Manager\LogManager.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Core\UClass.cpp">
+    <ClCompile Include="Source\Core\Graphics\FRenderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\UClass.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\USceneComponent.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Editor\EditorManager.h">
+    <ClInclude Include="Source\CoreMinimal.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imconfig.h">
+    <ClInclude Include="Source\Core\CoreTypes.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imgui.h">
+    <ClInclude Include="Source\Core\Application.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imgui_internal.h">
+    <ClInclude Include="Source\Core\FObjectFactory.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imstb_rectpack.h">
+    <ClInclude Include="Source\Core\FWindows.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imstb_textedit.h">
+    <ClInclude Include="Source\Core\UObject.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imstb_truetype.h">
+    <ClInclude Include="Source\Manager\LogManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imgui_impl_dx11.h">
+    <ClInclude Include="Source\Manager\IManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\ImGUI\imgui_impl_win32.h">
+    <ClInclude Include="Source\Editor\EditorManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\IManager.h">
+    <ClInclude Include="Source\Editor\ImGUI\imconfig.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core\FRenderer.h">
+    <ClInclude Include="Source\Editor\ImGUI\imgui.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Application.h">
+    <ClInclude Include="Source\Editor\ImGUI\imgui_impl_dx11.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core\FWindows.h">
+    <ClInclude Include="Source\Editor\ImGUI\imgui_impl_win32.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\InputManager.h">
+    <ClInclude Include="Source\Editor\ImGUI\imgui_internal.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="Source\Editor\ImGUI\imstb_rectpack.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Manager\LogManager.h">
+    <ClInclude Include="Source\Editor\ImGUI\imstb_textedit.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core\UClass.h">
+    <ClInclude Include="Source\Editor\ImGUI\imstb_truetype.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Graphics\FRenderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\InputManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\UClass.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\USceneComponent.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
     <None Include=".editorconfig" />
+    <None Include="Source\Core\Graphics\shader.hlsl" />
   </ItemGroup>
 </Project>
