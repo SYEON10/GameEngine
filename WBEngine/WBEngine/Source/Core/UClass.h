@@ -1,12 +1,13 @@
 #pragma once
 
-#include "CoreMinimal.h";
+#include "UObjectMinimal.h"
 
 class UClass
 {
-	friend FObjectFactory;
-
-	//TODO> Type을 저장해야 해...
+	friend class FObjectFactory;
+	
+public:
+	UClass();
 
 private:
 	inline void SetCDOIndex(const INT64 index) { CDOIndex_ = index; }

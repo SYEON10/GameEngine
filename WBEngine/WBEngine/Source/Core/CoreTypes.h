@@ -35,9 +35,14 @@ using TOptional = std::optional<T>;
 template <typename ... Ts>
 using TVariant = std::variant<Ts...>;
 
+template <typename T, typename U>
+using TPair = std::pair<T, U>;
+
 using FString = std::string;
 
+using INT8 = int8_t;
 using INT32 = int32_t;
 using INT64 = int64_t;
+using FLOAT = float_t;
 
 #define INDEX_NONE -1

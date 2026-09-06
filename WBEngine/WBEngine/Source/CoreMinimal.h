@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Core/UObject.h"
-#include "Core/FObjectFactory.h"
+#include "EngineMinimal.h"
 
-#include "Core/CoreTypes.h"
+#include "Core/FObjectFactory.h"
+#include "Core/USceneComponent.h"
+#include "Core/AActor.h"
+

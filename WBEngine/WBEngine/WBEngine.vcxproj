@@ -80,6 +80,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -95,6 +96,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,6 +114,7 @@
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,6 +134,7 @@
       <ForcedIncludeFiles>pch.h</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(ProjectDir)Source\</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Core\AActor.cpp" />
     <ClCompile Include="Source\Core\Application.cpp" />
     <ClCompile Include="Source\Core\FObjectFactory.cpp" />
     <ClCompile Include="Source\Core\FWindows.cpp" />
@@ -160,14 +165,19 @@
     </ClCompile>
     <ClCompile Include="Source\Core\UClass.cpp" />
     <ClCompile Include="Source\Core\USceneComponent.cpp" />
+    <ClCompile Include="Source\Core\UScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\FMath.h" />
+    <ClInclude Include="Source\Core\AActor.h" />
     <ClInclude Include="Source\CoreMinimal.h" />
     <ClInclude Include="Source\Core\CoreTypes.h" />
     <ClInclude Include="Source\Core\Application.h" />
     <ClInclude Include="Source\Core\FObjectFactory.h" />
     <ClInclude Include="Source\Core\FWindows.h" />
     <ClInclude Include="Source\Core\UObject.h" />
+    <ClInclude Include="Source\EngineMinimal.h" />
+    <ClInclude Include="Source\ManagerMinimal.h" />
     <ClInclude Include="Source\Manager\LogManager.h" />
     <ClInclude Include="Source\Manager\IManager.h" />
     <ClInclude Include="Source\Editor\EditorManager.h" />
@@ -184,9 +194,12 @@
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Core\UClass.h" />
     <ClInclude Include="Source\Core\USceneComponent.h" />
+    <ClInclude Include="Source\Core\UScene.h" />
+    <ClInclude Include="Source\UObjectMinimal.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <None Include="cpp.hint" />
     <None Include="imgui.ini" />
   </ItemGroup>
   <ItemGroup>

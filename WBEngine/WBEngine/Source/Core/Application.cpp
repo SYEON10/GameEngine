@@ -1,8 +1,8 @@
 #include "Application.h"
 #include "FWindows.h"
 #include "Graphics/FRenderer.h"
-#include "../Manager/InputManager.h";
-#include "../Manager/LogManager.h";
+#include "../Manager/InputManager.h"
+#include "../Manager/LogManager.h"
 
 #include "../Editor/ImGUI/imgui.h"
 #include "../Editor/ImGUI/imgui_impl_win32.h"
@@ -40,6 +40,8 @@ int Application::Run()
 
 void Application::MainLoop()
 {
+	InputManager::Get().Bind(FInputEvent(InputEventType::KeyDown, EKeyCode::KEY_W), []() {LOG_DEBUG("KEYDOWN wwwwww"); });
+
     MSG msg;
     while (true)
     {

@@ -1,6 +1,6 @@
 #pragma once
 #include "IManager.h"
-#include <string>
+#include "ManagerMinimal.h"
 
 class LogManager : public IManager<LogManager>
 {

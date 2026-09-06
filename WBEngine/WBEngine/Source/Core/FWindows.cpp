@@ -1,6 +1,6 @@
 #include "Windows.h"
 #include "FWindows.h"
-#include "../Manager/InputManager.h";
+#include "../Manager/InputManager.h"
 #include <cstdio>
 #include <iostream>
 
@@ -60,6 +60,8 @@ void FWindows::CreateConsoleWindow()
         freopen_s(&fp, "CONOUT$", "w", stderr);
 
         SetConsoleTitleW(L"Log Console");
+
+        SetConsoleOutputCP(CP_UTF8);
 
         std::wcout.clear();
         std::cout.clear();

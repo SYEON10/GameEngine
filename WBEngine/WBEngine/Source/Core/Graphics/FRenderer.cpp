@@ -20,6 +20,7 @@ ID3D11PixelShader* pixelShader = nullptr;
 
 ID3D11InputLayout* inputLayout = nullptr;
 ID3D11Buffer* vertexBuffer = nullptr;
+ID3D11Buffer* mvpBuffer = nullptr;
 
 
 struct FVertex {
@@ -173,12 +174,14 @@ void FRenderer::InitPipeline()
 
     D3D11_BUFFER_DESC mvpBD = {};
     mvpBD.Usage = D3D11_USAGE_DYNAMIC;
-    vertexBD.ByteWidth = sizeof(FMVPMatrix);
-    vertexBD.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    vertexBD.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+    mvpBD.ByteWidth = sizeof(FMVPMatrix);
+    mvpBD.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+    mvpBD.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
     D3D11_SUBRESOURCE_DATA initData = {};
     initData.pSysMem = vertices;
 
     g_device->CreateBuffer(&vertexBD, &initData, &vertexBuffer);
+
+    g_device->CreateBuffer(&mvpBD, nullptr, &mvpBuffer);
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <d3d11.h>
+#include <CoreMinimal.h>
 
 //DirectX 11 초기화 및 렌더링 담당
 class FRenderer

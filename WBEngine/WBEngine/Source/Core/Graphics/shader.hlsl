@@ -1,8 +1,8 @@
 cbuffer MVP_MATRIX : register(b0)
 {
-    matrix World;
-    matrix View;
-    matrix Projection;
+    row_major matrix World;
+    row_major matrix View;
+    row_major matrix Projection;
 };
 
 struct VS_OUTPUT
