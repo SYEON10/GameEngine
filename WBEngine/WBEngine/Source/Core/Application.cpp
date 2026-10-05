@@ -40,7 +40,8 @@ int Application::Run()
 
 void Application::MainLoop()
 {
-	InputManager::Get().Bind(FInputEvent(InputEventType::KeyDown, EKeyCode::KEY_W), []() {LOG_DEBUG("KEYDOWN wwwwww"); });
+	//인풋 테스트
+	//InputManager::Get().Bind(FInputEvent(InputEventType::KeyDown, EKeyCode::KEY_W), []() {LOG_DEBUG("KEYDOWN wwwwww"); });
 
     MSG msg;
     while (true)

@@ -23,21 +23,21 @@ enum class InputEventType : INT8 {
 	MouseUp,
 };
 
-using InputParam = TVariant<EKeyCode, FVector2D>;
+using InputParam = TVariant<EKeyCode, FVector2>;
 
 struct FInputEvent {
 
 	FInputEvent(InputEventType eventType, EKeyCode keyCode)
 		: eventType_(eventType), keyCode_(keyCode) {}
 
-	FInputEvent(InputEventType eventType, EKeyCode keyCode, FVector2D mousePos)
+	FInputEvent(InputEventType eventType, EKeyCode keyCode, FVector2 mousePos)
 		: eventType_(eventType), keyCode_(keyCode), mousePos_(mousePos) {
 	}
 
 	InputEventType eventType_;
 	EKeyCode keyCode_;
 
-	TOptional<FVector2D> mousePos_;
+	TOptional<FVector2> mousePos_;
 
 	bool operator==(const FInputEvent& other) const = default;
 };
@@ -59,7 +59,7 @@ public:
 	FInputListenerHandle Bind(FInputEvent inputEvent, FInputCallback callback);
 	void UnbindAll();
 
-	FVector2D GetMouseDelta();
+	FVector2 GetMouseDelta();
 
 	bool GetWindowsInput(UINT& msg, WPARAM wParam, LPARAM lParam);
 

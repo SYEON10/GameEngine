@@ -10,9 +10,9 @@ class AActor : public UObject
 	GENERATE_BODY(AActor)
 
 public:
-	inline TSharedPtr<USceneComponent> GetSceneComponent() { return sceneComponent_; };
+	inline TSharedPtr<USceneComponent> GetSceneComponent() { return rootComponent_; };
 
 protected:
-	TSharedPtr<USceneComponent> sceneComponent_;
+	TSharedPtr<USceneComponent> rootComponent_;
 };
 

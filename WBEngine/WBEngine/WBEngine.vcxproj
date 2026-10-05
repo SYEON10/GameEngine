@@ -166,6 +166,8 @@
     <ClCompile Include="Source\Core\UClass.cpp" />
     <ClCompile Include="Source\Core\USceneComponent.cpp" />
     <ClCompile Include="Source\Core\UScene.cpp" />
+    <ClCompile Include="Source\Core\UPrimitiveComponent.cpp" />
+    <ClCompile Include="Source\Core\UCameraComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\FMath.h" />
@@ -196,6 +198,8 @@
     <ClInclude Include="Source\Core\USceneComponent.h" />
     <ClInclude Include="Source\Core\UScene.h" />
     <ClInclude Include="Source\UObjectMinimal.h" />
+    <ClInclude Include="Source\Core\UPrimitiveComponent.h" />
+    <ClInclude Include="Source\Core\UCameraComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

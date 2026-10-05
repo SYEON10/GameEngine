@@ -36,9 +36,9 @@ void InputManager::UnbindAll()
 	listeners_.clear();
 }
 
-FVector2D InputManager::GetMouseDelta()
+FVector2 InputManager::GetMouseDelta()
 {
-	return FVector2D();
+	return FVector2::GetEmpty();
 }
 
 bool InputManager::GetWindowsInput(UINT& msg, WPARAM wParam, LPARAM lParam)
