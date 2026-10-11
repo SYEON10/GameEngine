@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <wtypes.h>
 
 class FWindows;
@@ -17,6 +17,13 @@ private:
 	void InitializeSystem();
 	void StartSystem();
 	void ShutdownSystem();
+
+	//라이프사이클
+	void Update(float deltaTime);
+	void FixedUpdate();
+
+	//인풋 처리
+	bool ProcessInput(MSG* msg);
 
 	FWindows* windows_;
 	FRenderer* renderer_;

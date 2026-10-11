@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "FWindows.h"
+#include "Time.h"
 #include "Graphics/FRenderer.h"
 #include "../Manager/InputManager.h"
 #include "../Manager/LogManager.h"
@@ -44,19 +45,24 @@ void Application::MainLoop()
 	//InputManager::Get().Bind(FInputEvent(InputEventType::KeyDown, EKeyCode::KEY_W), []() {LOG_DEBUG("KEYDOWN wwwwww"); });
 
     MSG msg;
+	Time::Initialize();
+	float accumulator = 0.0f;
     while (true)
     {
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-			TranslateMessage(&msg); //사용자가 알아들을 수 있는 메시지로 변환
-			DispatchMessage(&msg);	//WinProc으로 메시지 전달
+		if (ProcessInput(&msg) == false) {
+			break;
+		}
 
-			if (msg.message == WM_QUIT) {
-				break;
-			}
+		float dt = Time::UpdateDeltaTime();
+		accumulator += dt;
+
+		while (accumulator >= Time::FIXED_DELTATIME) {   // 부족하면 0번 실행, 대기 없음
+			FixedUpdate();
+			accumulator -= Time::FIXED_DELTATIME;
 		}
-		else {
-			renderer_->RenderLoop();
-		}
+
+		Update(dt);
+		renderer_->RenderLoop();
     }
 }
 
@@ -73,4 +79,28 @@ void Application::StartSystem()
 void Application::ShutdownSystem()
 {
 
+}
+
+void Application::Update(float deltaTime)
+{
+	LOG_DEBUG("DeltaTime: %f, TotalTime: %f", deltaTime, Time::TotalTime());
+}
+
+void Application::FixedUpdate()
+{
+	LOG_DEBUG("FixedUpdate: %f", Time::TotalTime());
+}
+
+bool Application::ProcessInput(MSG* msg)
+{
+	if (PeekMessage(msg, NULL, 0, 0, PM_REMOVE)) {
+		TranslateMessage(msg); //사용자가 알아들을 수 있는 메시지로 변환
+		DispatchMessage(msg);	//WinProc으로 메시지 전달
+
+		if (msg->message == WM_QUIT) {
+			return false;
+		}
+	}
+
+	return true;
 }

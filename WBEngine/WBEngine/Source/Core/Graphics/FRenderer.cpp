@@ -2,6 +2,7 @@
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
 #include <wrl/client.h> // Microsoft::WRL::ComPtr 사용을 위한 헤더
+#include "../../Manager/LogManager.h"
 
 #pragma comment(lib, "d3d11.lib")
 
@@ -146,8 +147,11 @@ ID3D11DeviceContext* FRenderer::GetDeviceContext()
 
 void FRenderer::InitPipeline()
 {
-    HRESULT hr = D3DCompileFromFile(L"Source\\Core\\Graphics\\shader.hlsl", nullptr, nullptr, "VShader", "vs_5_0", 0, 0, &vsBlob, &errorBlob);
-    D3DCompileFromFile(L"Source\\Core\\Graphics\\shader.hlsl", nullptr, nullptr, "PShader", "ps_5_0", 0, 0, &psBlob, &errorBlob);
+    const wchar_t* shaderPath = L"C:\\Users\\k3880\\Workspace\\GameEngine\\WBEngine\\WBEngine\\Source\\Core\\Graphics\\shader.hlsl";
+
+    HRESULT hr = D3DCompileFromFile(shaderPath, nullptr, nullptr, "VShader", "vs_5_0", 0, 0, &vsBlob, &errorBlob);
+
+    hr = D3DCompileFromFile(shaderPath, nullptr, nullptr, "PShader", "ps_5_0", 0, 0, &psBlob, &errorBlob);
 
     g_device->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, &vertexShader);
     g_device->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, &pixelShader);
